@@ -1,5 +1,5 @@
-#ifndef SYNTH_H
-#define SYNTH_H
+#ifndef AUDCON_H
+#define AUDCON_H
 
 #include <Audio.h>
 #include <Wire.h>
@@ -7,7 +7,6 @@
 #include <SD.h>
 #include <SerialFlash.h>
 #include <Bounce.h>
-#include <LiquidCrystal.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_ST7735.h>
 
@@ -44,6 +43,20 @@ extern AudioMixer4 fxR;
 extern AudioOutputI2S i2s1;
 extern AudioControlSGTL5000 sgtl5000_1;
 
+extern AudioEffectGranular granular1;
+extern AudioMixer4 GranularMode1;
+
+extern AudioEffectGranular                 granularL;
+extern AudioEffectGranular                 granularLR;
+extern AudioEffectGranular                 granularR;
+extern AudioMixer4                         GranMixL;
+extern AudioMixer4                         GranMixR;
+
+extern AudioRecordQueue                    queue1;
+extern AudioRecordQueue                    queue2;
+extern AudioPlaySdWav           playSdWav1;  
+
+extern AudioMixer4                         MixerGran;
 extern AudioConnection patchCord1;
 extern AudioConnection patchCord2;
 extern AudioConnection patchCord3;
@@ -85,5 +98,21 @@ extern AudioConnection patchCord38;
 extern AudioConnection patchCord39;
 extern AudioConnection patchCord40;
 extern AudioConnection patchCord41;
+
+extern AudioConnection patchCord42; //filtermode1 to gran
+extern AudioConnection patchCord43; //gran to granmode
+extern AudioConnection patchCord44; //granmode to env1
+extern AudioConnection patchCord45; //granmode to env1
+extern AudioConnection patchCordX;
+
+extern AudioConnection patchCord40;
+extern AudioConnection patchCord41;
+extern AudioConnection patchCord46;
+extern AudioConnection patchCord47;
+extern AudioConnection patchCord48;
+extern AudioConnection patchCord49;
+extern AudioConnection patchCord54;
+extern AudioConnection patchCord55;
+extern AudioConnection patchCord56;
 
 #endif

@@ -1,5 +1,5 @@
-#include "synth.h"
-
+#include "audcon.h"
+#include "global.h"
 // Define all Audio objects
 AudioSynthWaveform                  lfoA1;
 AudioEffectEnvelope                 lfoAenv1;
@@ -31,6 +31,23 @@ AudioMixer4                         fxR;
 AudioOutputI2S                      i2s1;
 AudioControlSGTL5000                sgtl5000_1;
 
+AudioEffectGranular                 granular1;
+AudioMixer4                         GranularMode1;
+
+AudioPlaySdRaw                      playSdRaw;
+AudioInputI2S                       i2s2;
+AudioRecordQueue                    queue1;
+AudioAnalyzePeak                    peak1;
+
+AudioEffectGranular                 granularLR;
+AudioEffectGranular                 granularL;
+AudioEffectGranular                 granularR;
+AudioMixer4                         GranMixL;
+AudioMixer4                         GranMixR;
+
+AudioMixer4                         MixerGran;
+AudioPlaySdWav           playSdWav1;     
+AudioRecordQueue         queue2; 
 // Define all patchCords
 AudioConnection patchCord1(lfoA1, lfoAenv1);
 AudioConnection patchCord2(lfoAenv1, 0, modMix1, 1);
@@ -47,7 +64,7 @@ AudioConnection patchCord12(vcoB1, 0, voiceMix1, 1);
 AudioConnection patchCord13(vcoB1, 0, modMix1, 0);
 AudioConnection patchCord14(vcoA1, 0, voiceMix1, 0);
 AudioConnection patchCord15(dc1, filterEnv1);
-AudioConnection patchCord16(sub1, 0, voiceMix1, 3);
+
 AudioConnection patchCord17(filterEnv1, 0, filterMix1, 1);
 AudioConnection patchCord18(voiceMix1, 0, filter1, 0);
 AudioConnection patchCord19(filterMix1, 0, filter1, 1);
@@ -55,7 +72,7 @@ AudioConnection patchCord20(filter1, 0, filterMode1, 0);
 AudioConnection patchCord21(filter1, 1, filterMode1, 1);
 AudioConnection patchCord22(filterMode1, env1);
 AudioConnection patchCord23(env1, 0, mix1, 0);
-AudioConnection patchCord24(mix1, 0, finalMix, 0);
+//AudioConnection patchCord24(mix1, 0, finalMix, 0);
 AudioConnection patchCord25(finalMix, 0, fxL, 0);
 AudioConnection patchCord26(finalMix, reverb);
 AudioConnection patchCord27(finalMix, 0, fxR, 0);
@@ -73,3 +90,19 @@ AudioConnection patchCord38(dlyMixL, 0, fxL, 2);
 AudioConnection patchCord39(dlyMixL, dlyL);
 AudioConnection patchCord40(fxL, 0, i2s1, 0);
 AudioConnection patchCord41(fxR, 0, i2s1, 1);
+AudioConnection patchCordX(GranularMode1, 0, finalMix, 0);
+
+
+//AudioConnection patchCord42(voiceMix1, 0, granular1, 0);
+AudioConnection patchCord43(mix1, 0, GranularMode1, 0);
+AudioConnection patchCord44(granular1, 0, GranularMode1, 1);
+AudioConnection patchCord45(filter1, 2, filterMode1, 2);
+
+AudioConnection       patchCord46(playSdWav1, 0, MixerGran, 0);
+AudioConnection       patchCord47(playSdWav1, 1, MixerGran, 1);
+AudioConnection       patchCord53(MixerGran, granular1);
+AudioConnection       patchCord54(mix1, queue2);
+
+
+//AudioConnection patchCord46(env1, 0, queue1, 0);
+//AudioConnection patchCord47(queue2, 0, granular1, 0);
