@@ -38,7 +38,7 @@ Audio Fidelity    44.1 kHz / 16-bit    CD-quality standard
 Max Grain Voices    4 simultaneous grains    Teensy DSP capacity
 Audio Memory    60 blocks allocated    Real-time safe margin
 
-🧪 Test Methodology
+Test Methodology
 Latency: Measured using Audacity, recording the mechanical click and output waveform, then calculating Δt.
 THD / THD+N: Measured using Visual Analyzer with FFT while playing sine waves.
 Frequency Response: Tested using white noise sweep and FFT plots.
@@ -55,7 +55,7 @@ IEC 60268-3: Sound System Equipment – Amplifiers – International Electrotech
 MIDI 1.0 Specification – MIDI Manufacturers Association
 Teensy Audio Library Documentation – PJRC
 
-🛠️ Setup & Compilation
+Setup & Compilation
 Dependencies:
 Teensyduino 1.58+
 Adafruit SSD1306 + GFX libraries
